@@ -1,8 +1,3 @@
-#' @import S7
-#' @importFrom S7 method
-#' @importFrom S7 S7_inherits
-NULL
-
 #' Enum S7 Class
 #'
 #' An S7 class representing an enumeration with named values.
