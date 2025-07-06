@@ -27,22 +27,23 @@ pak::pak("milanmlft/enum")
 This is a basic example which shows you how to solve a common problem:
 
 ``` r
-# library(enum)
+library(enum)
 
-# # Create an enum for days of the week
-# Days <- Enum(
-#   MONDAY = 1,
-#   TUESDAY = 2,
-#   WEDNESDAY = 3,
-#   THURSDAY = 4,
-#   FRIDAY = 5,
-#   SATURDAY = 6,
-#   SUNDAY = 7
-# )
+# Create an enum for days of the week
+Days <- Enum(
+  MONDAY = 1,
+  TUESDAY = 2,
+  WEDNESDAY = 3,
+  THURSDAY = 4,
+  FRIDAY = 5,
+  SATURDAY = 6,
+  SUNDAY = 7
+)
 
-# # Use the enum
-# today <- Days$MONDAY
-# today
+# Use the enum
+today <- Days$MONDAY
+today
+#> [1] 1
 ```
 
 ## Features
