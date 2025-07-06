@@ -39,6 +39,10 @@ test:
 precommit:
 	pre-commit run --all-files
 
+# Render the Rmd README
+readme:
+	$(RSCRIPT_CMD) -e "if (!require('devtools')) install.packages('devtools'); devtools::build_readme()"
+
 # Build package
 build:
 	$(R_CMD) CMD build .
