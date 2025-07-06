@@ -5,6 +5,9 @@
 
 <!-- badges: start -->
 
+[![R-CMD-check](https://github.com/milanmlft/enum/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/milanmlft/enum/actions/workflows/R-CMD-check.yaml)
+[![Codecov test
+coverage](https://codecov.io/gh/milanmlft/enum/graph/badge.svg)](https://app.codecov.io/gh/milanmlft/enum)
 <!-- badges: end -->
 
 The `enum` package provides a robust implementation of enumerations

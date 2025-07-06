@@ -4,3 +4,4 @@
 ^\.pre-commit-config\.yaml$
 ^_dev$
 ^Makefile$
+^\.github$
