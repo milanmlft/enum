@@ -94,6 +94,21 @@ is.enum <- function(x) {
   S7::S7_inherits(x, Enum_class)
 }
 
+# Equality comparison
+#' @export
+S7::method(`==`, list(Enum_class, Enum_class)) <- function(e1, e2) {
+  if (length(e1@values) != length(e2@values)) {
+    return(FALSE)
+  }
+  e1@values == e2@values
+}
+
+# Inequality comparison
+#' @export
+S7::method(`!=`, list(Enum_class, Enum_class)) <- function(e1, e2) {
+  !(e1 == e2)
+}
+
 # Helper function for NULL-default operator
 `%||%` <- function(x, y) {
   if (is.null(x)) y else x
