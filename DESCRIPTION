@@ -16,6 +16,5 @@ Suggests:
     testthat (>= 3.0.0),
     styler,
     lintr,
-    roxygen2,
-    spelling
+    roxygen2
 Config/testthat/edition: 3
