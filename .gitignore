@@ -1,6 +1,51 @@
+# R and RStudio files
 .Rproj.user
 .Rhistory
+.RData
+.Ruserdata
 .Rdata
 .httr-oauth
 .DS_Store
 .quarto
+
+# R package build artifacts
+*.tar.gz
+*.Rcheck/
+man/*.Rd
+NAMESPACE
+inst/doc/
+vignettes/*.html
+vignettes/*.pdf
+
+# Temporary files
+*.tmp
+*.temp
+*~
+.#*
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Environment and configuration
+.env
+.Renviron
+.Rprofile
+
+# Package development
+/Meta/
+/doc/
+/docs/
+pkgdown/
+_pkgdown.yml

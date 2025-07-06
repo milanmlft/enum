@@ -1,17 +1,21 @@
 Package: enum
 Title: Enums in R
 Version: 0.0.0.9000
-Authors@R: 
+Authors@R:
     person("Milan", "Malfait", , "m.malfait@ucl.ac.uk", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0001-9144-3701"))
-Description: Provides a robust implementation of enumerations (enums) for R, 
-    enabling the creation of type-safe, validated sets of named constants. 
-    Enums help prevent errors by constraining variables to predefined values 
+Description: Provides a robust implementation of enumerations (enums) for R,
+    enabling the creation of type-safe, validated sets of named constants.
+    Enums help prevent errors by constraining variables to predefined values
     and offer better code readability and maintainability.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
-Suggests: 
-    testthat (>= 3.0.0)
+Suggests:
+    testthat (>= 3.0.0),
+    styler,
+    lintr,
+    roxygen2,
+    spelling
 Config/testthat/edition: 3
