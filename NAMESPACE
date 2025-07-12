@@ -2,5 +2,4 @@
 
 export(Enum)
 export(is.enum)
-export(values)
 import(S7)

@@ -17,18 +17,19 @@ S7::method(`$<-`, Enum_class) <- function(x, name, value) {
 
 # Bracket accessor
 #' @export
-S7::method(`[`, Enum_class) <- function(x, i, ...) {
+S7::method(`[[`, Enum_class) <- function(x, i, ...) {
   if (is.character(i)) {
-    if (!i %in% x@enum_names) {
-      stop("Invalid enum name: ", i, call. = FALSE)
+    invalid_names <- i[!i %in% x@enum_names]
+    if (length(invalid_names) > 0) {
+      stop("Invalid enum names: ", paste(invalid_names, collapse = ", "), call. = FALSE)
     }
     idx <- match(i, x@enum_names)
-    return(x@values[[idx]])
+    return(unlist(x@values[[idx]], use.names = FALSE))
   } else if (is.numeric(i)) {
-    if (i < 1 || i > length(x@values)) {
+    if (any(i < 1 | i > length(x@values))) {
       stop("Index out of bounds", call. = FALSE)
     }
-    return(x@values[[i]])
+    return(unlist(x@values[[i]], use.names = FALSE))
   } else {
     stop("Invalid index type", call. = FALSE)
   }
@@ -36,7 +37,7 @@ S7::method(`[`, Enum_class) <- function(x, i, ...) {
 
 # Bracket assignment (should fail for immutability)
 #' @export
-S7::method(`[<-`, Enum_class) <- function(x, i, value) {
+S7::method(`[[<-`, Enum_class) <- function(x, i, value) {
   stop("Cannot modify enum", call. = FALSE)
 }
 
