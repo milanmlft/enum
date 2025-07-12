@@ -52,12 +52,17 @@ Enum <- function(...) {
   arg_names <- names(args)
   if (is.null(arg_names) || any(arg_names == "")) {
     if (length(args) > 0) {
-      stop("All enum values must be named", call. = FALSE)
+      unnamed_positions <- which(arg_names == "" | is.null(arg_names))
+      stop(sprintf(
+        "All enum values must be named. Unnamed values at positions: %s",
+        paste(unnamed_positions, collapse = ", ")
+      ), call. = FALSE)
     }
   }
 
   if (any(duplicated(arg_names))) {
-    stop("Duplicate enum names", call. = FALSE)
+    duplicates <- unique(arg_names[duplicated(arg_names)])
+    stop(sprintf("Duplicate enum names: %s", paste(duplicates, collapse = ", ")), call. = FALSE)
   }
 
   Enum_class(
