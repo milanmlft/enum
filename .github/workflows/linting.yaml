@@ -34,17 +34,6 @@ jobs:
           r-version: "release"
           use-public-rspm: true
 
-      - uses: r-lib/actions/setup-r-dependencies@v2
-        with:
-          extra-packages: |
-            any::rcmdcheck
-            any::roxygen2
-            any::styler
-            any::lintr
-            any::desc
-            any::rmarkdown
-            any::knitr
-
       - name: Install precommit
         run: python -m pip install pre-commit
 
