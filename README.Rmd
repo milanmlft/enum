@@ -33,8 +33,6 @@ pak::pak("milanmlft/enum")
 
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
-
 ```{r}
 library(enum)
 
@@ -59,6 +57,47 @@ today
 - **Validation**: Values are automatically validated against defined constants
 - **Readability**: Named constants make code more self-documenting
 - **Maintainability**: Centralized definition of related constants
+
+### Accessors
+
+Enums support the following accessors:
+
+- `$`: Access a single value by name
+- `[[`: Access multiple values by name
+- `names`: Get the names of the enum
+
+```{r}
+Days[["MONDAY"]]
+Days$TUESDAY
+names(Days)
+```
+
+### Validation
+
+All enum names must be unique and non-empty strings.
+
+```{r, error = TRUE}
+Days <- Enum(
+  MONDAY = 1,
+  MONDAY = 2
+)
+```
+
+```{r, error = TRUE}
+Days <- Enum(
+  MONDAY = 1,
+  2
+)
+```
+
+### Immutability
+
+Enums are immutable, meaning that once created, their values cannot be changed.
+
+```{r, error = TRUE}
+Days$MONDAY <- 8
+```
+
 
 ## Development
 

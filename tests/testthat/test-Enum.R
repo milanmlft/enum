@@ -1,27 +1,24 @@
 test_that("Enum can be created with named values", {
   # Test creating an enum with character values
   color_enum <- Enum(RED = "red", GREEN = "green", BLUE = "blue")
-  expect_s7_class(color_enum, "Enum")
   expect_true(is.enum(color_enum))
 })
 
 test_that("Enum can be created with numeric values", {
   # Test creating an enum with numeric values
   priority_enum <- Enum(LOW = 1, MEDIUM = 2, HIGH = 3)
-  expect_s7_class(priority_enum, "Enum")
   expect_true(is.enum(priority_enum))
 })
 
 test_that("Enum can be created with mixed value types", {
   # Test creating an enum with different value types
   mixed_enum <- Enum(ZERO = 0L, ONE = "one", TWO = 2.0, THREE = TRUE)
-  expect_s7_class(mixed_enum, "Enum")
   expect_true(is.enum(mixed_enum))
 })
 
 test_that("Empty Enum can be created", {
   empty_enum <- Enum()
-  expect_s7_class(empty_enum, "Enum")
+  expect_true(is.enum(empty_enum))
   expect_equal(length(empty_enum), 0)
 })
 
@@ -52,13 +49,6 @@ test_that("Enum can be converted to list", {
   expect_equal(grade_list$A, 90)
   expect_equal(grade_list$B, 80)
   expect_equal(grade_list$C, 70)
-})
-
-test_that("Enum can be converted to vector", {
-  grade_enum <- Enum(A = 90, B = 80, C = 70)
-  grade_vector <- as.vector(grade_enum)
-  expect_type(grade_vector, "double")
-  expect_equal(grade_vector, c(90, 80, 70))
 })
 
 

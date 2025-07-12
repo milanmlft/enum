@@ -27,8 +27,6 @@ pak::pak("milanmlft/enum")
 
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
-
 ``` r
 library(enum)
 
@@ -55,6 +53,54 @@ today
   constants
 - **Readability**: Named constants make code more self-documenting
 - **Maintainability**: Centralized definition of related constants
+
+### Accessors
+
+Enums support the following accessors:
+
+- `$`: Access a single value by name
+- `[[`: Access multiple values by name
+- `names`: Get the names of the enum
+
+``` r
+Days[["MONDAY"]]
+#> [1] 1
+Days$TUESDAY
+#> [1] 2
+names(Days)
+#> [1] "MONDAY"    "TUESDAY"   "WEDNESDAY" "THURSDAY"  "FRIDAY"    "SATURDAY"
+#> [7] "SUNDAY"
+```
+
+### Validation
+
+All enum names must be unique and non-empty strings.
+
+``` r
+Days <- Enum(
+  MONDAY = 1,
+  MONDAY = 2
+)
+#> Error: Duplicate enum names
+```
+
+``` r
+Days <- Enum(
+  MONDAY = 1,
+  2
+)
+#> Error: All enum values must be named
+```
+
+### Immutability
+
+Enums are immutable, meaning that once created, their values cannot be
+changed.
+
+``` r
+Days$MONDAY <- 8
+#> Error: Cannot modify enum
+```
 
 ## Development
 

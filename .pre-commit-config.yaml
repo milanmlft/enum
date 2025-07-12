@@ -8,6 +8,8 @@ repos:
       - id: style-files
         args: [--style_pkg=styler, --style_fun=tidyverse_style]
       - id: roxygenize
+        additional_dependencies:
+          - S7
       - id: use-tidy-description
       - id: parsable-R
       - id: no-browser-statement
