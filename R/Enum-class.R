@@ -97,10 +97,7 @@ is.enum <- function(x) {
 # Equality comparison
 #' @export
 S7::method(`==`, list(Enum_class, Enum_class)) <- function(e1, e2) {
-  if (length(e1@values) != length(e2@values)) {
-    return(FALSE)
-  }
-  e1@values == e2@values
+  identical(e1@values, e2@values) && identical(e1@enum_names, e2@enum_names)
 }
 
 # Inequality comparison
