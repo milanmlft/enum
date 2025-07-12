@@ -54,3 +54,5 @@ jobs:
         with:
           upload-snapshots: true
           build_args: 'c("--no-manual","--compact-vignettes=gs+qpdf")'
+          # Temporary workaround for https://github.com/RConsortium/S7/issues/549
+          error-on: '"error"'
