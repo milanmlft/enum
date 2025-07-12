@@ -17,6 +17,3 @@ An \code{Enum} object.
 \description{
 An S7 class representing an enumeration with named values.
 }
-\examples{
-colors <- Enum_class(values = list(RED = 1, GREEN = 2, BLUE = 3), enum_names = c("RED", "GREEN", "BLUE"))
-}
