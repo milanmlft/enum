@@ -2,7 +2,7 @@
 #' @export
 S7::method(`$`, Enum_class) <- function(x, name) {
   if (!name %in% x@enum_names) {
-    stop("Invalid enum name", call. = FALSE)
+    stop(sprintf("Invalid enum name: %s", name), call. = FALSE)
   }
 
   idx <- match(name, x@enum_names)
