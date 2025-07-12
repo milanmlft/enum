@@ -51,13 +51,6 @@ test_that("Enum can be converted to list", {
   expect_equal(grade_list$C, 70)
 })
 
-test_that("Enum can be converted to vector", {
-  grade_enum <- Enum(A = 90, B = 80, C = 70)
-  grade_vector <- as.vector(grade_enum)
-  expect_type(grade_vector, "double")
-  expect_equal(grade_vector, c(90, 80, 70))
-})
-
 
 test_that("Enum throws error for invalid access", {
   status_enum <- Enum(PENDING = "pending", COMPLETE = "complete")

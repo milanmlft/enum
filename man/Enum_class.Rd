@@ -6,6 +6,17 @@
 \usage{
 Enum_class(values = list(), enum_names = character(0))
 }
+\arguments{
+\item{values}{A list of values.}
+
+\item{enum_names}{A character vector of enum names.}
+}
+\value{
+An \code{Enum} object.
+}
 \description{
 An S7 class representing an enumeration with named values.
+}
+\examples{
+colors <- Enum_class(values = list(RED = 1, GREEN = 2, BLUE = 3), enum_names = c("RED", "GREEN", "BLUE"))
 }

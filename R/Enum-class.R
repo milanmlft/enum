@@ -1,6 +1,14 @@
 #' Enum S7 Class
 #'
 #' An S7 class representing an enumeration with named values.
+#'
+#' @param values A list of values.
+#' @param enum_names A character vector of enum names.
+#'
+#' @return An `Enum` object.
+#'
+#' @examples
+#' colors <- Enum_class(values = list(RED = 1, GREEN = 2, BLUE = 3), enum_names = c("RED", "GREEN", "BLUE"))
 Enum_class <- S7::new_class("Enum",
   properties = list(
     values = class_list,
@@ -48,8 +56,8 @@ Enum_class <- S7::new_class("Enum",
 #' @export
 Enum <- function(...) {
   args <- list(...)
-
   arg_names <- names(args)
+
   if (is.null(arg_names) || any(arg_names == "")) {
     if (length(args) > 0) {
       unnamed_positions <- which(arg_names == "" | is.null(arg_names))
