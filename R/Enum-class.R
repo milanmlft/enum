@@ -83,6 +83,34 @@ S7::method(print, Enum_class) <- function(x, ...) {
   invisible(x)
 }
 
+# Str method for better inspection
+#' @export
+S7::method(str, Enum_class) <- function(object, ...) {
+  cat("Enum object with", length(object), "values\n")
+  if (length(object) > 0) {
+    for (i in seq_along(object@enum_names)) {
+      cat("  $", object@enum_names[i], ": ", sep = "")
+      str(object@values[[i]], ...)
+    }
+  }
+  invisible(object)
+}
+
+# Format method
+#' @export
+S7::method(format, Enum_class) <- function(x, ...) {
+  if (length(x) == 0) {
+    return("Enum()")
+  }
+
+  pairs <- character(length(x))
+  for (i in seq_along(x@enum_names)) {
+    pairs[i] <- paste0(x@enum_names[i], " = ", format(x@values[[i]]))
+  }
+
+  paste0("Enum(", paste(pairs, collapse = ", "), ")")
+}
+
 #' Check if an object is an Enum
 #'
 #' @param x An object to test.
