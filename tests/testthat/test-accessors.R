@@ -21,3 +21,27 @@ test_that("Enum length returns correct count", {
   day_enum <- Enum(MONDAY = 1, TUESDAY = 2, WEDNESDAY = 3)
   expect_equal(length(day_enum), 3)
 })
+
+test_that("is.valid function works correctly", {
+  colors <- Enum(RED = 1, GREEN = 2, BLUE = 3)
+  expect_true(is.valid(colors, 1))
+  expect_true(is.valid(colors, 2))
+  expect_true(is.valid(colors, 3))
+  expect_false(is.valid(colors, 4))
+  expect_false(is.valid(colors, "red"))
+})
+
+test_that("key.by.value function works correctly", {
+  colors <- Enum(RED = 1, GREEN = 2, BLUE = 3)
+  expect_equal(key.by.value(colors, 1), "RED")
+  expect_equal(key.by.value(colors, 2), "GREEN")
+  expect_equal(key.by.value(colors, 3), "BLUE")
+  expect_null(key.by.value(colors, 4))
+  expect_null(key.by.value(colors, "red"))
+})
+
+test_that("Utility functions handle edge cases", {
+  empty_enum <- Enum()
+  expect_false(is.valid(empty_enum, 1))
+  expect_null(key.by.value(empty_enum, 1))
+})
