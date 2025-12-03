@@ -11,7 +11,7 @@ repos:
         language: system
         files: \.R$
   - repo: https://github.com/lorenzwalthert/precommit
-    rev: v0.4.3.9012
+    rev: v0.4.3.9017
     hooks:
       - id: roxygenize
         additional_dependencies:
@@ -24,7 +24,7 @@ repos:
       - id: lintr
       - id: readme-rmd-rendered
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v5.0.0
+    rev: v6.0.0
     hooks:
       - id: check-added-large-files
         args: ["--maxkb=200"]

@@ -1,5 +1,4 @@
 PACKAGE_NAME = enum
-R_CMD = R
 RSCRIPT_CMD = Rscript
 
 .PHONY: *
@@ -8,7 +7,7 @@ RSCRIPT_CMD = Rscript
 all: check install
 
 # Check package
-check: document
+check: document precommit
 	$(RSCRIPT_CMD) -e "if (!require('devtools')) install.packages('devtools'); devtools::check()"
 
 # Install package locally
