@@ -6,3 +6,5 @@
 ^Makefile$
 ^\.github$
 ^\.renovaterc\.json5$
+^[.]?air[.]toml$
+^\.vscode$
