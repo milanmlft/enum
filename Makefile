@@ -1,5 +1,4 @@
 PACKAGE_NAME = enum
-R_CMD = R
 RSCRIPT_CMD = Rscript
 
 .PHONY: *
