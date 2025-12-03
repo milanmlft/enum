@@ -5,3 +5,5 @@
 ^_dev$
 ^Makefile$
 ^\.github$
+^[.]?air[.]toml$
+^\.vscode$

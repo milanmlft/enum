@@ -6,7 +6,8 @@
 #' @param enum_names A character vector of enum names.
 #'
 #' @return An `Enum` object.
-Enum_class <- S7::new_class("Enum",
+Enum_class <- S7::new_class(
+  "Enum",
   properties = list(
     values = class_list,
     enum_names = class_character
@@ -58,10 +59,13 @@ Enum <- function(...) {
   if (is.null(arg_names) || any(arg_names == "")) {
     if (length(args) > 0) {
       unnamed_positions <- which(arg_names == "" | is.null(arg_names))
-      stop(sprintf(
-        "All enum values must be named. Unnamed values at positions: %s",
-        paste(unnamed_positions, collapse = ", ")
-      ), call. = FALSE)
+      stop(
+        sprintf(
+          "All enum values must be named. Unnamed values at positions: %s",
+          paste(unnamed_positions, collapse = ", ")
+        ),
+        call. = FALSE
+      )
     }
   }
 
