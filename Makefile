@@ -8,7 +8,7 @@ RSCRIPT_CMD = Rscript
 all: check install
 
 # Check package
-check: document
+check: document precommit
 	$(RSCRIPT_CMD) -e "if (!require('devtools')) install.packages('devtools'); devtools::check()"
 
 # Install package locally
