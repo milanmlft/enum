@@ -2,6 +2,14 @@
 # See https://pre-commit.com/hooks.html for more hooks
 exclude: '\.Rd$|NAMESPACE'
 repos:
+  - repo: local
+    hooks:
+      # https://github.com/posit-dev/air
+      - id: air
+        name: Format R code with air
+        entry: air format
+        language: system
+        files: \.R$
   - repo: https://github.com/lorenzwalthert/precommit
     rev: v0.4.3.9012
     hooks:
