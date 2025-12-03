@@ -17,12 +17,6 @@ jobs:
       - name: Checkout source
         uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6
 
-      - name: Cache pre-commit
-        uses: actions/cache@v4
-        with:
-          path: ~/.cache/pre-commit
-          key: pre-commit-${{ hashFiles('.pre-commit-config.yaml') }}
-
       - name: Set up python
         uses: actions/setup-python@v5
         with:
@@ -41,4 +35,4 @@ jobs:
         uses: posit-dev/setup-air@v1
 
       - name: Run pre-commit
-        run: pre-commit run --all-files --color always --verbose
+        run: pre-commit run --show-diff-on-failure --all-files --color always --verbose
