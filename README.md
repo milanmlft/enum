@@ -8,6 +8,8 @@
 [![R-CMD-check](https://github.com/milanmlft/enum/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/milanmlft/enum/actions/workflows/R-CMD-check.yaml)
 [![Codecov test
 coverage](https://codecov.io/gh/milanmlft/enum/graph/badge.svg)](https://app.codecov.io/gh/milanmlft/enum)
+[![pre-commit.ci
+status](https://results.pre-commit.ci/badge/github/milanmlft/enum/main.svg)](https://results.pre-commit.ci/latest/github/milanmlft/enum/main)
 <!-- badges: end -->
 
 The `enum` package provides a robust implementation of enumerations
@@ -81,7 +83,7 @@ Days <- Enum(
   MONDAY = 1,
   MONDAY = 2
 )
-#> Error: Duplicate enum names
+#> Error: Duplicate enum names: MONDAY
 ```
 
 ``` r
@@ -89,7 +91,7 @@ Days <- Enum(
   MONDAY = 1,
   2
 )
-#> Error: All enum values must be named
+#> Error: All enum values must be named. Unnamed values at positions: 2
 ```
 
 ### Immutability

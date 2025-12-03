@@ -18,6 +18,7 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/milanmlft/enum/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/milanmlft/enum/actions/workflows/R-CMD-check.yaml)
 [![Codecov test coverage](https://codecov.io/gh/milanmlft/enum/graph/badge.svg)](https://app.codecov.io/gh/milanmlft/enum)
+[![pre-commit.ci status](https://results.pre-commit.ci/badge/github/milanmlft/enum/main.svg)](https://results.pre-commit.ci/latest/github/milanmlft/enum/main)
 <!-- badges: end -->
 
 The `enum` package provides a robust implementation of enumerations (enums) for R, enabling the creation of type-safe, validated sets of named constants. Enums help prevent errors by constraining variables to predefined values and offer better code readability and maintainability.
