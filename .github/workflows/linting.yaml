@@ -32,7 +32,7 @@ jobs:
         run: python -m pip install pre-commit
 
       - name: Install air
-        uses: posit-dev/setup-air@63e80dedb6d275c94a3841e15e5ff8691e1ab237 # v1
+        uses: posit-dev/setup-air@cf390573ff4fe0f198f35df3a642b1409328d859 # v1
 
       - name: Run pre-commit
         run: pre-commit run --show-diff-on-failure --all-files --color always --verbose
