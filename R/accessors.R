@@ -18,18 +18,23 @@ S7::method(`$<-`, Enum_class) <- function(x, name, value) {
 # Bracket accessor
 #' @export
 S7::method(`[[`, Enum_class) <- function(x, i, ...) {
+  if (length(i) != 1) {
+    stop("Index must be a single name or position", call. = FALSE)
+  }
+  if (is.na(i)) {
+    stop("Index must not be NA", call. = FALSE)
+  }
+
   if (is.character(i)) {
-    invalid_names <- i[!i %in% x@enum_names]
-    if (length(invalid_names) > 0) {
-      stop("Invalid enum names: ", paste(invalid_names, collapse = ", "), call. = FALSE)
+    if (!i %in% x@enum_names) {
+      stop(sprintf("Invalid enum name: %s", i), call. = FALSE)
     }
-    idx <- match(i, x@enum_names)
-    return(unlist(x@values[[idx]], use.names = FALSE))
+    x@values[[match(i, x@enum_names)]]
   } else if (is.numeric(i)) {
-    if (any(i < 1 | i > length(x@values))) {
+    if (i < 1 || i > length(x@values)) {
       stop("Index out of bounds", call. = FALSE)
     }
-    return(unlist(x@values[[i]], use.names = FALSE))
+    x@values[[i]]
   } else {
     stop("Invalid index type", call. = FALSE)
   }

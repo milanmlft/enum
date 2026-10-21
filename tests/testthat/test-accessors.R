@@ -97,3 +97,56 @@ test_that("is.valid and key.by.value reject non-Enum input", {
   expect_error(is.valid(list(A = 1), 1), "First argument must be an Enum")
   expect_error(key.by.value("x", 1), "First argument must be an Enum")
 })
+
+test_that("[[ rejects vector, NA and invalid indices with clear errors", {
+  e <- Enum(RED = 1, GREEN = 2, BLUE = 3)
+  expect_error(e[[c("RED", "BLUE")]], "single name or position")
+  expect_error(e[[1:2]], "single name or position")
+  expect_error(e[[character(0)]], "single name or position")
+  expect_error(e[[NA_integer_]], "must not be NA")
+  expect_error(e[[NA_character_]], "must not be NA")
+  expect_error(e[["PURPLE"]], "Invalid enum name: PURPLE")
+  expect_error(e[[4]], "out of bounds")
+  expect_error(e[[0]], "out of bounds")
+  expect_error(e[[TRUE]], "Invalid index type")
+  expect_equal(e[[2]], 2)
+})
+
+test_that("[[ and $ return the same thing for list and vector values", {
+  e <- Enum(A = list(1, 2), B = c(1, 2, 3), C = "x")
+  expect_identical(e[["A"]], e$A)
+  expect_identical(e[["B"]], e$B)
+  expect_identical(e[["C"]], e$C)
+  expect_identical(e[["A"]], list(1, 2))
+  expect_identical(e[[1]], e$A)
+  expect_identical(e[[2]], e$B)
+})
+
+test_that("enum properties cannot be modified after construction", {
+  e <- Enum(RED = 1, GREEN = 2)
+  expect_error(e@values <- list(9, 2), "Cannot modify enum")
+  expect_error(e@enum_names <- c("A", "B"), "Cannot modify enum")
+  expect_error(S7::prop(e, "values") <- list(9, 2), "Cannot modify enum")
+  expect_error(S7::prop(e, "enum_names") <- c("A", "B"), "Cannot modify enum")
+  expect_error(e$RED <- 5, "Cannot modify enum")
+  expect_error(e[["RED"]] <- 5, "Cannot modify enum")
+  expect_equal(e$RED, 1)
+  expect_equal(names(e), c("RED", "GREEN"))
+})
+
+test_that("names<- cannot change enum names", {
+  e <- Enum(RED = 1, GREEN = 2)
+  try(names(e) <- c("A", "B"), silent = TRUE)
+  expect_equal(names(e), c("RED", "GREEN"))
+  expect_equal(e$RED, 1)
+})
+
+test_that("construction, printing and comparison still work with locked properties", {
+  e <- Enum(RED = 1, GREEN = 2)
+  expect_true(e == Enum(RED = 1, GREEN = 2))
+  expect_true(e != Enum(RED = 1, GREEN = 3))
+  expect_equal(format(e), "Enum(RED = 1, GREEN = 2)")
+  expect_equal(as.list(e), list(RED = 1, GREEN = 2))
+  expect_output(print(e), "RED: 1")
+  expect_length(Enum(), 0)
+})
