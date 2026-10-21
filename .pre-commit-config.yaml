@@ -2,16 +2,12 @@
 # See https://pre-commit.com/hooks.html for more hooks
 exclude: '\.Rd$|NAMESPACE'
 repos:
-  - repo: local
+  - repo: https://github.com/posit-dev/air-pre-commit
+    rev: 0.8.2
     hooks:
-      # https://github.com/posit-dev/air
-      - id: air
-        name: Format R code with air
-        entry: air format
-        language: system
-        files: \.R$
+      - id: air-format
   - repo: https://github.com/lorenzwalthert/precommit
-    rev: v0.4.3.9017
+    rev: v0.4.3.9032
     hooks:
       - id: roxygenize
         additional_dependencies:
