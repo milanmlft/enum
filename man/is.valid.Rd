@@ -9,17 +9,20 @@ is.valid(enum, value)
 \arguments{
 \item{enum}{An Enum object}
 
-\item{value}{The value to check}
+\item{value}{The value to check (treated as a single object)}
 }
 \value{
-\code{TRUE} if the value is valid for the enum, \code{FALSE} otherwise
+A single \code{TRUE} if the value is valid for the enum, \code{FALSE} otherwise
 }
 \description{
-Check if a value is valid for an enum
+Matching is strict and type-aware: the value must be \code{identical()} to one of
+the enum values, so \code{"1"} and \code{TRUE} do not match \code{1}. A vector \code{value} is
+treated as a single value and matched as a whole.
 }
 \examples{
 colors <- Enum(RED = 1, GREEN = 2, BLUE = 3)
 is.valid(colors, 1) # TRUE
 is.valid(colors, 4) # FALSE
+is.valid(colors, "1") # FALSE
 
 }

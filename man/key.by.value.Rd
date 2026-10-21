@@ -9,17 +9,23 @@ key.by.value(enum, value)
 \arguments{
 \item{enum}{An Enum object}
 
-\item{value}{The value to find the key for}
+\item{value}{The value to find the key for (treated as a single object)}
 }
 \value{
-The key (name) for the value, or \code{NULL} if not found
+A single string with the key (name) for the value, or \code{NULL} if not
+found
 }
 \description{
-Get the key (name) for a given value in an enum
+Matching is strict and type-aware (see \code{\link[=is.valid]{is.valid()}}). If several keys share
+the same value, the key of the first match is returned.
 }
 \examples{
 colors <- Enum(RED = 1, GREEN = 2, BLUE = 3)
 key.by.value(colors, 1) # "RED"
 key.by.value(colors, 4) # NULL
+
+# With duplicate values, the first match wins
+dup <- Enum(A = 1, B = 1)
+key.by.value(dup, 1) # "A"
 
 }

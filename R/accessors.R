@@ -53,44 +53,67 @@ S7::method(names, Enum_class) <- function(x) {
   x@enum_names
 }
 
+# Internal: validate that `x` is an Enum
+check_enum <- function(x) {
+  if (!is.enum(x)) {
+    stop("First argument must be an Enum", call. = FALSE)
+  }
+  invisible(x)
+}
+
+# Internal: strict, type-aware matching of `value` against the enum values.
+# Returns the integer indices of all values that are `identical()` to `value`.
+.match_value <- function(enum, value) {
+  which(vapply(enum@values, identical, logical(1), y = value))
+}
+
 #' Check if a value is valid for an enum
 #'
-#' @param enum An Enum object
-#' @param value The value to check
+#' Matching is strict and type-aware: the value must be `identical()` to one of
+#' the enum values, so `"1"` and `TRUE` do not match `1`. A vector `value` is
+#' treated as a single value and matched as a whole.
 #'
-#' @return `TRUE` if the value is valid for the enum, `FALSE` otherwise
+#' @param enum An Enum object
+#' @param value The value to check (treated as a single object)
+#'
+#' @return A single `TRUE` if the value is valid for the enum, `FALSE` otherwise
 #'
 #' @examples
 #' colors <- Enum(RED = 1, GREEN = 2, BLUE = 3)
 #' is.valid(colors, 1) # TRUE
 #' is.valid(colors, 4) # FALSE
+#' is.valid(colors, "1") # FALSE
 #'
 #' @export
 is.valid <- function(enum, value) {
-  if (!is.enum(enum)) {
-    stop("First argument must be an Enum", call. = FALSE)
-  }
-  value %in% enum@values
+  check_enum(enum)
+  length(.match_value(enum, value)) > 0
 }
 
 #' Get the key (name) for a given value in an enum
 #'
-#' @param enum An Enum object
-#' @param value The value to find the key for
+#' Matching is strict and type-aware (see [is.valid()]). If several keys share
+#' the same value, the key of the first match is returned.
 #'
-#' @return The key (name) for the value, or `NULL` if not found
+#' @param enum An Enum object
+#' @param value The value to find the key for (treated as a single object)
+#'
+#' @return A single string with the key (name) for the value, or `NULL` if not
+#'   found
 #'
 #' @examples
 #' colors <- Enum(RED = 1, GREEN = 2, BLUE = 3)
 #' key.by.value(colors, 1) # "RED"
 #' key.by.value(colors, 4) # NULL
 #'
+#' # With duplicate values, the first match wins
+#' dup <- Enum(A = 1, B = 1)
+#' key.by.value(dup, 1) # "A"
+#'
 #' @export
 key.by.value <- function(enum, value) {
-  if (!is.enum(enum)) {
-    stop("First argument must be an Enum", call. = FALSE)
-  }
-  idx <- which(enum@values == value)
+  check_enum(enum)
+  idx <- .match_value(enum, value)
   if (length(idx) == 0) {
     return(NULL)
   }
