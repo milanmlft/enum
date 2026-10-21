@@ -19,5 +19,10 @@ Useful links:
 \author{
 \strong{Maintainer}: Milan Malfait \email{m.malfait@ucl.ac.uk} (\href{https://orcid.org/0000-0001-9144-3701}{ORCID})
 
+Authors:
+\itemize{
+  \item Milan Malfait \email{m.malfait@ucl.ac.uk} (\href{https://orcid.org/0000-0001-9144-3701}{ORCID})
+}
+
 }
 \keyword{internal}
