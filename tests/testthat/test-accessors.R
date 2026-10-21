@@ -134,6 +134,17 @@ test_that("enum properties cannot be modified after construction", {
   expect_equal(names(e), c("RED", "GREEN"))
 })
 
+test_that("lock holds for empty and NULL-valued enums", {
+  empty <- Enum()
+  expect_error(empty@values <- list(1), "Cannot modify enum")
+  expect_error(empty@enum_names <- "A", "Cannot modify enum")
+  expect_length(empty, 0)
+
+  with_null <- Enum(A = NULL)
+  expect_error(with_null@values <- list(5), "Cannot modify enum")
+  expect_null(with_null$A)
+})
+
 test_that("names<- cannot change enum names", {
   e <- Enum(RED = 1, GREEN = 2)
   try(names(e) <- c("A", "B"), silent = TRUE)
