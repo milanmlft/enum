@@ -8,3 +8,4 @@
 ^\.renovaterc\.json5$
 ^[.]?air[.]toml$
 ^\.vscode$
+^CLAUDE\.md$

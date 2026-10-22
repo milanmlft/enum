@@ -1,3 +1,16 @@
+# Property setter factory: allows the initial assignment made by the constructor
+# but errors on any later modification via `@<-` / `prop<-`.
+lock_property <- function(name) {
+  force(name)
+  function(self, value) {
+    if (!is.null(attr(self, name, exact = TRUE))) {
+      stop("Cannot modify enum", call. = FALSE)
+    }
+    attr(self, name) <- value
+    self
+  }
+}
+
 #' Enum S7 Class
 #'
 #' An S7 class representing an enumeration with named values.
@@ -9,8 +22,8 @@
 Enum_class <- S7::new_class(
   "Enum",
   properties = list(
-    values = class_list,
-    enum_names = class_character
+    values = S7::new_property(S7::class_list, setter = lock_property("values")),
+    enum_names = S7::new_property(S7::class_character, setter = lock_property("enum_names"))
   ),
   validator = function(self) {
     if (length(self@enum_names) != length(self@values)) {

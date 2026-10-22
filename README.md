@@ -68,7 +68,7 @@ Days[["MONDAY"]]
 Days$TUESDAY
 #> [1] 2
 names(Days)
-#> [1] "MONDAY"    "TUESDAY"   "WEDNESDAY" "THURSDAY"  "FRIDAY"    "SATURDAY"
+#> [1] "MONDAY"    "TUESDAY"   "WEDNESDAY" "THURSDAY"  "FRIDAY"    "SATURDAY" 
 #> [7] "SUNDAY"
 ```
 
@@ -81,7 +81,8 @@ Days <- Enum(
   MONDAY = 1,
   MONDAY = 2
 )
-#> Error: Duplicate enum names
+#> Error:
+#> ! Duplicate enum names: MONDAY
 ```
 
 ``` r
@@ -89,7 +90,8 @@ Days <- Enum(
   MONDAY = 1,
   2
 )
-#> Error: All enum values must be named
+#> Error:
+#> ! All enum values must be named. Unnamed values at positions: 2
 ```
 
 ### Immutability
@@ -99,23 +101,21 @@ changed.
 
 ``` r
 Days$MONDAY <- 8
-#> Error: Cannot modify enum
+#> Error:
+#> ! Cannot modify enum
 ```
 
 ## Development
 
-This package uses [pre-commit](https://pre-commit.com/) hooks to ensure
-code quality. To set up the development environment:
+This package uses [prek](https://prek.j178.dev/) hooks to ensure code
+quality. To set up the development environment:
 
 ``` bash
-# Install pre-commit
-pip install pre-commit
-
 # Install the hooks
-pre-commit install
+prek install
 
 # Run hooks manually
-pre-commit run --all-files
+prek run --all-files
 ```
 
 ## License
