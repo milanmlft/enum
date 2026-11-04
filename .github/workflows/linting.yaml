@@ -17,6 +17,15 @@ jobs:
       - name: Checkout source
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
 
+      - name: Set up R
+        uses: r-lib/actions/setup-r@6f6e5bc62fba3a704f74e7ad7ef7676c5c6a2590 # v2
+        with:
+          r-version: "release"
+          use-public-rspm: true
+
+      - name: Install air
+        uses: posit-dev/setup-air@cf390573ff4fe0f198f35df3a642b1409328d859 # v1
+
       - name: Run prek
         uses: j178/prek-action@44924fe9ef4a6f88253c4b6b1bf11c689d3ce53d # v3.1,0
         with:
