@@ -3,11 +3,11 @@
 exclude: '\.Rd$|NAMESPACE'
 repos:
   - repo: https://github.com/posit-dev/air-pre-commit
-    rev: 0.8.2
+    rev: 0.13.0
     hooks:
       - id: air-format
   - repo: https://github.com/lorenzwalthert/precommit
-    rev: v0.4.3.9032
+    rev: v0.4.3.9035
     hooks:
       - id: roxygenize
         additional_dependencies:
