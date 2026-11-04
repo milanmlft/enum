@@ -2,4 +2,6 @@
 
 export(Enum)
 export(is.enum)
+export(is.valid)
+export(key.by.value)
 import(S7)

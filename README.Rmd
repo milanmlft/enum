@@ -101,17 +101,15 @@ Days$MONDAY <- 8
 
 ## Development
 
-This package uses [pre-commit](https://pre-commit.com/) hooks to ensure code quality. To set up the development environment:
+This package uses [prek](https://prek.j178.dev/) hooks to ensure code quality. To set up the
+development environment:
 
 ```bash
-# Install pre-commit
-pip install pre-commit
-
 # Install the hooks
-pre-commit install
+prek install
 
 # Run hooks manually
-pre-commit run --all-files
+prek run --all-files
 ```
 
 ## License
